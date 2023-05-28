@@ -8,6 +8,10 @@ import 'package:line_icons/line_icons.dart';
 import 'package:mobileapp_project/Screen/firstscreen/feedmain.dart';
 import 'package:mobileapp_project/Screen/firstscreen/postscreen.dart';
 import 'package:mobileapp_project/Screen/map/map.dart';
+import 'package:mobileapp_project/Screen/map/testmap.dart';
+import 'package:mobileapp_project/book/book.dart';
+import 'package:mobileapp_project/color/selectedcolor.dart';
+import 'package:mobileapp_project/delivery/Page/HomePage.dart';
 import 'package:mobileapp_project/login/main_page.dart';
 import 'firebase_options.dart';
 import 'login/login_page.dart';
@@ -25,7 +29,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MainPage(),
+      home: FirstPage(),
     );
   }
 }
@@ -38,8 +42,14 @@ class FirstPage extends StatefulWidget {
 }
 
 class _FirstPageState extends State<FirstPage> {
+  MyPalettesColor myPalettesColor = MyPalettesColor();
   int indexWidget = 0;
-  List<Widget> _selectedWidget = <Widget>[Feed(), WritePost(), LocationMap()];
+  final List<Widget> _selectedWidget = <Widget>[
+    Feed(),
+    MapPost(),
+    Deli_homepage(),
+    BookingCalendarDemoApp(),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,24 +59,33 @@ class _FirstPageState extends State<FirstPage> {
           height: MediaQuery.of(context).size.height,
           child: _selectedWidget.elementAt(indexWidget)),
       bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+            color: Colors.lightBlue.withAlpha(80),
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(10), topRight: Radius.circular(10))),
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
             child: GNav(
-              tabBackgroundColor: Colors.lightBlue,
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              tabBackgroundColor: myPalettesColor.purple,
               tabs: const [
                 GButton(
                   icon: LineIcons.home,
                   text: 'home',
                 ),
                 GButton(
-                  icon: Icons.add,
-                  text: 'add',
-                ),
-                GButton(
                   icon: Icons.map,
                   text: 'map',
-                )
+                ),
+                GButton(
+                  icon: Icons.delivery_dining_rounded,
+                  text: 'Delivery',
+                ),
+                GButton(
+                  icon: Icons.book,
+                  text: 'Booking',
+                ),
               ],
               selectedIndex: indexWidget,
               onTabChange: (value) {

@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Color(0xFFF5F5F3),
       ),
       routes: {
-        "/": (context) => deli_homepage(),
+        "/": (context) => Deli_homepage(),
         "cartPage": (context) => CartPage(),
         "itemPage": (context) => ItemPage(),
       },

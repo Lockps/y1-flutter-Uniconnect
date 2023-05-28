@@ -6,8 +6,8 @@ import '../widget/DrawerWidget.dart';
 import '../widget/NewestItemsWidget.dart';
 import '../widget/PopularItemWidget.dart';
 
-class deli_homepage extends StatelessWidget {
-  const deli_homepage({super.key});
+class Deli_homepage extends StatelessWidget {
+  const Deli_homepage({super.key});
 
   @override
   Widget build(BuildContext context) {
