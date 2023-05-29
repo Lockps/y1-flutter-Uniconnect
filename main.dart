@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/services.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:mobileapp_project/Screen/firstscreen/feedmain.dart';
@@ -28,7 +29,10 @@ final name = email.split('@');
 void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  initializeDateFormatting().then((_) => runApp(MyApp()));
+  initializeDateFormatting().then((_) {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+    runApp(MyApp());
+  });
 }
 
 class MyApp extends StatelessWidget {
@@ -36,10 +40,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(),
-    );
+    return MaterialApp(debugShowCheckedModeBanner: false, home: MainPage());
   }
 }
 
@@ -55,7 +56,7 @@ class _FirstPageState extends State<FirstPage> {
   int indexWidget = 0;
   final List<Widget> _selectedWidget = <Widget>[
     Feed(),
-    // MapPost(),
+    MapPost(),
     Deli_homepage(),
     CLASSPAGE(),
     Proflie()
@@ -115,23 +116,23 @@ class _FirstPageState extends State<FirstPage> {
   }
 }
 
-// class book extends StatelessWidget {
-//   const book({super.key});
+class book extends StatelessWidget {
+  const book({super.key});
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return SizedBox(
-//       height: 50,
-//       width: 100,
-//       child: ElevatedButton(
-//           style: ElevatedButton.styleFrom(shape: const StadiumBorder()),
-//           onPressed: () {
-//             Navigator.of(context)
-//                 .push(MaterialPageRoute(builder: (BuildContext context) {
-//               return const main_book();
-//             }));
-//           },
-//           child: const Text("book")),
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 50,
+      width: 100,
+      child: ElevatedButton(
+          style: ElevatedButton.styleFrom(shape: const StadiumBorder()),
+          onPressed: () {
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (BuildContext context) {
+              return const main_book();
+            }));
+          },
+          child: const Text("book")),
+    );
+  }
+}

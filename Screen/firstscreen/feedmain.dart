@@ -90,158 +90,154 @@ class _FeedState extends State<Feed> {
           "All post today",
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            AnimatedContainer(
-                duration: Duration(milliseconds: 500),
-                decoration: BoxDecoration(color: Colors.transparent),
-                height: isPost ? MediaQuery.of(context).size.height * 0.20 : 0,
-                child: LayoutBuilder(
-                  builder: (context, constraints) {
-                    final parentWidth = constraints.maxWidth;
-                    final parentHeight = constraints.maxHeight;
-                    return Container(
-                      decoration: BoxDecoration(color: myPalettesColor.purple),
-                      width: MediaQuery.of(context).size.width,
-                      height: parentHeight,
-                      child: FutureBuilder(
-                          future: Firebase.initializeApp(),
-                          builder: (BuildContext context,
-                              AsyncSnapshot<void> snapshot) {
-                            if (snapshot.connectionState ==
-                                ConnectionState.waiting) {
-                              return Center(
-                                child: CircularProgressIndicator(),
-                              );
-                            }
-                            if (snapshot.hasError) {
-                              return Center(
-                                child: Text("Error: ${snapshot.error}"),
-                              );
-                            }
-                            return Form(
-                                key: _formkey,
-                                child: Column(
-                                  children: [
-                                    Spacer(),
-                                    SizedBox(
-                                      width: MediaQuery.of(context).size.width *
-                                          0.8,
-                                      child: TextFormField(
-                                        validator: (value) {
-                                          if (value!.isEmpty) {
-                                            return "Please enter text";
-                                          }
-                                          return null;
-                                        },
-                                        decoration: InputDecoration(
-                                            labelText:
-                                                "${name[0]} want to post something?",
-                                            suffixIcon: IconButton(
-                                                onPressed: () async {
-                                                  ImagePicker imagePicker =
-                                                      ImagePicker();
-                                                  XFile? file =
-                                                      await imagePicker
-                                                          .pickImage(
-                                                              source:
-                                                                  ImageSource
-                                                                      .camera);
+      body: Column(
+        children: [
+          AnimatedContainer(
+              duration: Duration(milliseconds: 500),
+              decoration: BoxDecoration(color: Colors.transparent),
+              height: isPost ? MediaQuery.of(context).size.height * 0.20 : 0,
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  final parentWidth = constraints.maxWidth;
+                  final parentHeight = constraints.maxHeight;
+                  return Container(
+                    decoration: BoxDecoration(color: myPalettesColor.purple),
+                    width: MediaQuery.of(context).size.width,
+                    height: parentHeight,
+                    child: FutureBuilder(
+                        future: Firebase.initializeApp(),
+                        builder: (BuildContext context,
+                            AsyncSnapshot<void> snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          }
+                          if (snapshot.hasError) {
+                            return Center(
+                              child: Text("Error: ${snapshot.error}"),
+                            );
+                          }
+                          return Form(
+                              key: _formkey,
+                              child: Column(
+                                children: [
+                                  Spacer(),
+                                  SizedBox(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.8,
+                                    child: TextFormField(
+                                      validator: (value) {
+                                        if (value!.isEmpty) {
+                                          return "Please enter text";
+                                        }
+                                        return null;
+                                      },
+                                      decoration: InputDecoration(
+                                          labelText:
+                                              "${name[0]} want to post something?",
+                                          suffixIcon: IconButton(
+                                              onPressed: () async {
+                                                ImagePicker imagePicker =
+                                                    ImagePicker();
+                                                XFile? file =
+                                                    await imagePicker.pickImage(
+                                                        source:
+                                                            ImageSource.camera);
 
-                                                  if (file == null) return;
-                                                  Reference referenceRoot =
-                                                      FirebaseStorage.instance
-                                                          .ref();
-                                                  Reference referenceDirImages =
-                                                      referenceRoot
-                                                          .child('images');
-                                                  Reference
-                                                      referenceImageToUpload =
-                                                      referenceDirImages
-                                                          .child('name');
+                                                if (file == null) return;
+                                                Reference referenceRoot =
+                                                    FirebaseStorage.instance
+                                                        .ref();
+                                                Reference referenceDirImages =
+                                                    referenceRoot
+                                                        .child('images');
+                                                Reference
+                                                    referenceImageToUpload =
+                                                    referenceDirImages
+                                                        .child('name');
 
-                                                  try {
-                                                    await referenceImageToUpload
-                                                        .putFile(
-                                                            File(file.path));
-                                                    imageUrl =
-                                                        await referenceImageToUpload
-                                                            .getDownloadURL();
-                                                  } catch (error) {}
-                                                },
-                                                icon: Icon(
-                                                  Icons.camera_alt,
-                                                  color: Colors.white
-                                                      .withAlpha(200),
-                                                ))),
-                                        onSaved: (newValue) {
-                                          post.essays = newValue!;
-                                        },
-                                      ),
+                                                try {
+                                                  await referenceImageToUpload
+                                                      .putFile(File(file.path));
+                                                  imageUrl =
+                                                      await referenceImageToUpload
+                                                          .getDownloadURL();
+                                                } catch (error) {}
+                                              },
+                                              icon: Icon(
+                                                Icons.camera_alt,
+                                                color:
+                                                    Colors.white.withAlpha(200),
+                                              ))),
+                                      onSaved: (newValue) {
+                                        post.essays = newValue!;
+                                      },
                                     ),
-                                    Spacer(),
-                                    InkWell(
-                                      child: ElevatedButton.icon(
-                                        style: ElevatedButton.styleFrom(
-                                            backgroundColor:
-                                                myPalettesColor.darkpink),
-                                        label: Text("Post"),
-                                        onPressed: () async {
+                                  ),
+                                  Spacer(),
+                                  InkWell(
+                                    child: ElevatedButton.icon(
+                                      style: ElevatedButton.styleFrom(
+                                          backgroundColor:
+                                              myPalettesColor.darkpink),
+                                      label: Text("Post"),
+                                      onPressed: () async {
+                                        if (_formkey.currentState!.validate()) {
+                                          await getcurrentLatiLng();
+                                          setState(() {
+                                            isPost = false;
+                                          });
                                           if (_formkey.currentState!
                                               .validate()) {
-                                            await getcurrentLatiLng();
-                                            setState(() {
-                                              isPost = false;
+                                            post.date = DateTime.now();
+                                            _formkey.currentState!.save();
+                                            _datapost.add({
+                                              "name": name[0],
+                                              "warning": post.essays,
+                                              "date": post.date,
+                                              "icon": post.iconint,
+                                              "like": post.like,
+                                              "lat": currentLati,
+                                              "lng": currentLng
                                             });
-                                            if (_formkey.currentState!
-                                                .validate()) {
-                                              post.date = DateTime.now();
-                                              _formkey.currentState!.save();
-                                              _datapost.add({
-                                                "name": name[0],
-                                                "warning": post.essays,
-                                                "date": post.date,
-                                                "icon": post.iconint,
-                                                "like": post.like,
-                                                "lat": currentLati,
-                                                "lng": currentLng
-                                              });
-                                              _formkey.currentState!.reset();
-                                            }
+                                            _formkey.currentState!.reset();
                                           }
+                                        }
 
-                                          if (imageUrl.isEmpty) {
-                                            ScaffoldMessenger.of(context)
-                                                .showSnackBar(SnackBar(
-                                                    content: Text(
-                                                        'Please upload an image')));
-                                            return;
-                                          }
-                                          if (key.currentState!.validate()) {
-                                            String itemName =
-                                                _controllerName.text;
-                                            String itemQuantity =
-                                                _controllerQuantity.text;
-                                            Map<String, String> dataToSend = {
-                                              'imgname': itemName,
-                                              'imagepost': imageUrl,
-                                            };
+                                        if (imageUrl.isEmpty) {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(SnackBar(
+                                                  content: Text(
+                                                      'Please upload an image')));
+                                          return;
+                                        }
+                                        if (key.currentState!.validate()) {
+                                          String itemName =
+                                              _controllerName.text;
+                                          String itemQuantity =
+                                              _controllerQuantity.text;
+                                          Map<String, String> dataToSend = {
+                                            'imgname': itemName,
+                                            'imagepost': imageUrl,
+                                          };
 
-                                            _reference.add(dataToSend);
-                                          }
-                                        },
-                                        icon: Icon(Icons.send),
-                                      ),
+                                          _reference.add(dataToSend);
+                                        }
+                                      },
+                                      icon: Icon(Icons.send),
                                     ),
-                                    Spacer()
-                                  ],
-                                ));
-                          }),
-                    );
-                  },
-                )),
-            Padding(
+                                  ),
+                                  Spacer()
+                                ],
+                              ));
+                        }),
+                  );
+                },
+              )),
+          Expanded(
+            child: Padding(
               padding: const EdgeInsets.only(top: 10),
               child: RefreshIndicator(
                 onRefresh: _refreshdata,
@@ -257,98 +253,91 @@ class _FeedState extends State<Feed> {
                         child: CircularProgressIndicator(),
                       );
                     }
-                    return SizedBox(
-                      height: MediaQuery.of(context).size.height,
-                      child: SingleChildScrollView(
-                        child: ListView.builder(
-                            itemCount: snapshot.data!.docs.length,
-                            itemBuilder: (context, int index) {
-                              final doc = snapshot.data!.docs[index];
-                              final data = doc.data() as Map<String, dynamic>;
-                              final name = data["name"] as String?;
-                              final essays = data["warning"] as String?;
-                              return Container(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.20,
-                                decoration: BoxDecoration(
-                                  color: myPalettesColor.yellow.withAlpha(70),
-                                  border: Border(
-                                      bottom: BorderSide(
-                                          width: 1.5,
-                                          color: Colors.black.withAlpha(50))),
-                                ),
-                                child: Column(
-                                  children: [
-                                    Spacer(),
-                                    Container(
-                                      color: Colors.transparent,
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.05,
-                                      child: Row(children: [
-                                        ProfilePicture(
-                                          name: name![0],
-                                          radius: 35,
-                                          fontsize: 21,
-                                          img: imageprofile,
-                                        ),
-                                        Text("$name")
-                                      ]),
-                                    ),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                          color: Colors.transparent),
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.08,
-                                      //*DATA
-                                      child: Expanded(
-                                        child: ListTile(
-                                          title: Text(
-                                            essays ?? "Doesn't found header",
-                                            style: TextStyle(fontSize: 20),
-                                          ),
+                    return ListView.builder(
+                        itemCount: snapshot.data!.docs.length,
+                        itemBuilder: (context, int index) {
+                          final doc = snapshot.data!.docs[index];
+                          final data = doc.data() as Map<String, dynamic>;
+                          final name = data["name"] as String?;
+                          final essays = data["warning"] as String?;
+                          return Container(
+                            height: MediaQuery.of(context).size.height * 0.20,
+                            decoration: BoxDecoration(
+                              color: myPalettesColor.yellow.withAlpha(70),
+                              border: Border(
+                                  bottom: BorderSide(
+                                      width: 1.5,
+                                      color: Colors.black.withAlpha(50))),
+                            ),
+                            child: Expanded(
+                              child: Column(
+                                children: [
+                                  Spacer(),
+                                  Container(
+                                    color: Colors.transparent,
+                                    height: MediaQuery.of(context).size.height *
+                                        0.05,
+                                    child: Row(children: [
+                                      ProfilePicture(
+                                        name: name![0],
+                                        radius: 35,
+                                        fontsize: 21,
+                                        img: imageprofile,
+                                      ),
+                                      Text("$name")
+                                    ]),
+                                  ),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                        color: Colors.transparent),
+                                    height: MediaQuery.of(context).size.height *
+                                        0.08,
+                                    //*DATA
+                                    child: Expanded(
+                                      child: ListTile(
+                                        title: Text(
+                                          essays ?? "Doesn't found header",
+                                          style: TextStyle(fontSize: 20),
                                         ),
                                       ),
                                     ),
-                                    Container(
-                                      color: Colors.transparent,
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.04,
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Spacer(),
-                                          IconButton(
-                                              onPressed: () {},
-                                              icon: Icon(Icons.thumb_up)),
-                                          Spacer(),
-                                          IconButton(
-                                              onPressed: () {},
-                                              icon: Icon(Icons.comment)),
-                                          Spacer(),
-                                          IconButton(
-                                              onPressed: () {},
-                                              icon: Icon(Icons.share)),
-                                          Spacer(),
-                                        ],
-                                      ),
+                                  ),
+                                  Container(
+                                    color: Colors.transparent,
+                                    height: MediaQuery.of(context).size.height *
+                                        0.04,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Spacer(),
+                                        IconButton(
+                                            onPressed: () {},
+                                            icon: Icon(Icons.thumb_up)),
+                                        Spacer(),
+                                        IconButton(
+                                            onPressed: () {},
+                                            icon: Icon(Icons.comment)),
+                                        Spacer(),
+                                        IconButton(
+                                            onPressed: () {},
+                                            icon: Icon(Icons.share)),
+                                        Spacer(),
+                                      ],
                                     ),
-                                    Spacer()
-                                  ],
-                                ),
-                              );
-                            }),
-                      ),
-                    );
+                                  ),
+                                  Spacer()
+                                ],
+                              ),
+                            ),
+                          );
+                        });
                   },
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
           onPressed: () {
