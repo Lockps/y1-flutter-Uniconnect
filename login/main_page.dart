@@ -23,3 +23,7 @@ class MainPage extends StatelessWidget {
     );
   }
 }
+
+final user = FirebaseAuth.instance.currentUser;
+String email = user!.email!;
+final name = email.split('@');

@@ -5,6 +5,10 @@ import '../widget/AppBarWidget.dart';
 import '../widget/CartBottomNavBar.dart';
 import '../widget/DrawerWidget.dart';
 
+int itemQuantity1 = 1;
+int itemQuantity2 = 1;
+int itemQuantity3 = 2;
+
 class CartPage extends StatefulWidget {
   const CartPage({Key? key}) : super(key: key);
 
@@ -13,10 +17,6 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
-  int itemQuantity1 = 1;
-  int itemQuantity2 = 1;
-  int itemQuantity3 = 2;
-
   void incrementQuantity(int itemIndex) {
     setState(() {
       if (itemIndex == 1) {
@@ -497,22 +497,22 @@ class _CartPageState extends State<CartPage> {
       bottomNavigationBar: const CartBottomNavBar(),
     );
   }
+}
 
-  int calculateTotalItems() {
-    return itemQuantity1 + itemQuantity2 + itemQuantity3;
-  }
+int calculateTotalItems() {
+  return itemQuantity1 + itemQuantity2 + itemQuantity3;
+}
 
-  int calculateSubtotal() {
-    final int itemPrice1 = 65;
-    final int itemPrice2 = 45;
-    final int itemPrice3 = 40;
+int calculateSubtotal() {
+  final int itemPrice1 = 65;
+  final int itemPrice2 = 45;
+  final int itemPrice3 = 40;
 
-    return (itemQuantity1 * itemPrice1) +
-        (itemQuantity2 * itemPrice2) +
-        (itemQuantity3 * itemPrice3);
-  }
+  return (itemQuantity1 * itemPrice1) +
+      (itemQuantity2 * itemPrice2) +
+      (itemQuantity3 * itemPrice3);
+}
 
-  int calculateTotal() {
-    return calculateSubtotal() + 10; // Adding delivery charge of 10฿
-  }
+int calculateTotal() {
+  return calculateSubtotal() + 10; // Adding delivery charge of 10฿
 }

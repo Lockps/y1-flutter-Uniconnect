@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:firebase_core/firebase_core.dart';
@@ -7,19 +8,27 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:mobileapp_project/Screen/firstscreen/feedmain.dart';
 import 'package:mobileapp_project/Screen/firstscreen/postscreen.dart';
-import 'package:mobileapp_project/Screen/map/map.dart';
 import 'package:mobileapp_project/Screen/map/testmap.dart';
-import 'package:mobileapp_project/book/book.dart';
+import 'package:mobileapp_project/Screen/profile/myprofile.dart';
 import 'package:mobileapp_project/color/selectedcolor.dart';
 import 'package:mobileapp_project/delivery/Page/HomePage.dart';
+import 'package:mobileapp_project/delivery/Page/ItemPage.dart';
 import 'package:mobileapp_project/login/main_page.dart';
+import 'package:mobileapp_project/uploadimage/upimage.dart';
+import 'book/main_book.dart';
+import 'class/class.dart';
+import 'delivery/Page/CartPage.dart';
 import 'firebase_options.dart';
 import 'login/login_page.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
+final user = FirebaseAuth.instance.currentUser;
+String email = user!.email!;
+final name = email.split('@');
 void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(MyApp());
+  initializeDateFormatting().then((_) => runApp(MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -29,7 +38,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: FirstPage(),
+      home: MainPage(),
     );
   }
 }
@@ -48,7 +57,24 @@ class _FirstPageState extends State<FirstPage> {
     Feed(),
     MapPost(),
     Deli_homepage(),
-    BookingCalendarDemoApp(),
+    CLASSPAGE(),
+    Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Text(
+          name[0],
+        ),
+        MaterialButton(
+          onPressed: () {
+            FirebaseAuth.instance.signOut();
+          },
+          color: Colors.blue,
+          child: const Text("Logout"),
+        ),
+        UPLOAD(),
+        book()
+      ],
+    ),
   ];
   @override
   Widget build(BuildContext context) {
@@ -72,20 +98,24 @@ class _FirstPageState extends State<FirstPage> {
               tabs: const [
                 GButton(
                   icon: LineIcons.home,
-                  text: 'home',
+                  text: ' home',
                 ),
                 GButton(
                   icon: Icons.map,
-                  text: 'map',
+                  text: ' map',
                 ),
                 GButton(
                   icon: Icons.delivery_dining_rounded,
-                  text: 'Delivery',
+                  text: ' Delivery',
                 ),
                 GButton(
-                  icon: Icons.book,
-                  text: 'Booking',
+                  icon: Icons.developer_board_outlined,
+                  text: ' classroom',
                 ),
+                GButton(
+                  icon: Icons.person,
+                  text: ' User',
+                )
               ],
               selectedIndex: indexWidget,
               onTabChange: (value) {
@@ -97,6 +127,27 @@ class _FirstPageState extends State<FirstPage> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class book extends StatelessWidget {
+  const book({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 50,
+      width: 100,
+      child: ElevatedButton(
+          style: ElevatedButton.styleFrom(shape: const StadiumBorder()),
+          onPressed: () {
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (BuildContext context) {
+              return const main_book();
+            }));
+          },
+          child: const Text("book")),
     );
   }
 }

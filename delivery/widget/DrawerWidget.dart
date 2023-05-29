@@ -1,5 +1,12 @@
+// ignore_for_file: prefer_const_constructors
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+final user = FirebaseAuth.instance.currentUser;
+String email = user!.email!;
+final name = email.split('@');
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({super.key});
@@ -8,7 +15,7 @@ class DrawerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       child: ListView(
-        children: const [
+        children: [
           DrawerHeader(
             padding: EdgeInsets.zero,
             child: UserAccountsDrawerHeader(
@@ -16,11 +23,11 @@ class DrawerWidget extends StatelessWidget {
                 color: Color.fromARGB(255, 168, 40, 31),
               ),
               accountName: Text(
-                "Nongmiddi",
+                name[0],
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               accountEmail: Text(
-                "Nongmild03@gmail.com",
+                email,
                 style: TextStyle(fontSize: 16),
               ),
               currentAccountPicture: CircleAvatar(

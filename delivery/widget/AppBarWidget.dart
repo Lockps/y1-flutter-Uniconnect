@@ -19,7 +19,7 @@ class AppBarWidget extends StatelessWidget {
           child: Container(
               padding: EdgeInsets.all(8),
               decoration: BoxDecoration(
-                color: Colors.white,
+                  color: Colors.white,
                   borderRadius: BorderRadius.circular(20),
                   boxShadow: const [
                     BoxShadow(
@@ -29,16 +29,50 @@ class AppBarWidget extends StatelessWidget {
                       offset: Offset(0, 3),
                     )
                   ]),
-              child: Icon(CupertinoIcons.bars)
-              ),
-              
+              child: Icon(CupertinoIcons.bars)),
         ),
         InkWell(
           onTap: () {},
           child: Container(
+            padding: EdgeInsets.all(8),
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: const [
+                  BoxShadow(
+                    color: Colors.grey,
+                    spreadRadius: 2,
+                    blurRadius: 10,
+                    offset: Offset(0, 3),
+                  )
+                ]),
+            child: Icon(Icons.notifications),
+          ),
+        ),
+      ]),
+    );
+  }
+}
+
+class AppCartWidget extends StatelessWidget {
+  const AppCartWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        vertical: 15,
+        horizontal: 15,
+      ),
+      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+        InkWell(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: Container(
               padding: EdgeInsets.all(8),
               decoration: BoxDecoration(
-                color: Colors.white,
+                  color: Colors.white,
                   borderRadius: BorderRadius.circular(20),
                   boxShadow: const [
                     BoxShadow(
@@ -48,9 +82,25 @@ class AppBarWidget extends StatelessWidget {
                       offset: Offset(0, 3),
                     )
                   ]),
-              child: Icon(Icons.notifications),
-              ),
-              
+              child: Icon(Icons.arrow_back)),
+        ),
+        InkWell(
+          onTap: () {},
+          child: Container(
+            padding: EdgeInsets.all(8),
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: const [
+                  BoxShadow(
+                    color: Colors.grey,
+                    spreadRadius: 2,
+                    blurRadius: 10,
+                    offset: Offset(0, 3),
+                  )
+                ]),
+            child: Icon(Icons.notifications),
+          ),
         ),
       ]),
     );

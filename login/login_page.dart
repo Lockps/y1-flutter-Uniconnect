@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mobileapp_project/components/my_button.dart';
@@ -31,6 +33,7 @@ class LoginPage extends StatelessWidget {
             Color.fromARGB(255, 189, 114, 114),
             Color.fromARGB(255, 190, 149, 149),
             Color.fromARGB(255, 248, 72, 72),
+            Colors.blue
           ],
           // decoratorList is an optional attribute
           decoratorsList: [
@@ -80,8 +83,7 @@ class LoginPage extends StatelessWidget {
                     const SizedBox(height: 50),
                     Container(
                         height: 240,
-                        child: Image.network(
-                            'http://unity.swu.ac.th/wp-content/uploads/2020/06/Srinakharinwirot_Logo_TH_Color-1-300x300.jpg')),
+                        child: Image.asset('assets/images/swu.png')),
 
                     // logo
 

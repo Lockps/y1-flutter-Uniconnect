@@ -4,16 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:booking_calendar/booking_calendar.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 
-class BookingCalendarDemoApp extends StatefulWidget {
-  const BookingCalendarDemoApp({Key? key}) : super(key: key);
+class book4 extends StatefulWidget {
+  const book4({Key? key}) : super(key: key);
 
   @override
-  State<BookingCalendarDemoApp> createState() => _BookingCalendarDemoAppState();
+  State<book4> createState() => _book4State();
 }
 
-class _BookingCalendarDemoAppState extends State<BookingCalendarDemoApp> {
+class _book4State extends State<book4> {
   final now = DateTime.now();
   late BookingService mockBookingService;
 
@@ -75,6 +76,12 @@ class _BookingCalendarDemoAppState extends State<BookingCalendarDemoApp> {
 
   @override
   Widget build(BuildContext context) {
+    converted.add(DateTimeRange(
+        start: DateTime(now.year, now.month, now.day, 13, 0),
+        end: DateTime(now.year, now.month, now.day, 14, 0)));
+    converted.add(DateTimeRange(
+        start: DateTime(now.year, now.month, now.day, 15, 0),
+        end: DateTime(now.year, now.month, now.day, 16, 0)));
     return MaterialApp(
         title: 'Booking Calendar Demo',
         theme: ThemeData(),
@@ -86,7 +93,7 @@ class _BookingCalendarDemoAppState extends State<BookingCalendarDemoApp> {
               getBookingStream: getBookingStreamMock,
               uploadBooking: uploadBookingMock,
               pauseSlots: generatePauseSlots(),
-              pauseSlotText: 'LUNCH',
+              pauseSlotText: 'พักเที่ยง',
               hideBreakTime: false,
               loadingWidget: const Text('Fetching data...'),
               uploadingWidget: const CircularProgressIndicator(),
@@ -94,6 +101,8 @@ class _BookingCalendarDemoAppState extends State<BookingCalendarDemoApp> {
               startingDayOfWeek: StartingDayOfWeek.tuesday,
               wholeDayIsBookedWidget:
                   const Text('Sorry, for this day everything is booked'),
+              //disabledDates: [DateTime(2023, 1, 20)],
+              //disabledDays: [6, 7],
             ),
           ),
         ));

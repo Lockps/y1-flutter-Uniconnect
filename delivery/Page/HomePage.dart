@@ -1,5 +1,8 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mobileapp_project/delivery/Page/CartPage.dart';
 import '../widget/AppBarWidget.dart';
 import '../widget/CategoriesWidget.dart';
 import '../widget/DrawerWidget.dart';
@@ -129,14 +132,15 @@ class Deli_homepage extends StatelessWidget {
         ]),
         child: FloatingActionButton(
           onPressed: () {
-            Navigator.pushNamed(context, "cartPage");
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => CartPage()));
           },
+          backgroundColor: Colors.white,
           child: Icon(
             CupertinoIcons.cart,
             size: 28,
             color: Colors.red,
           ),
-          backgroundColor: Colors.white,
         ),
       ),
     );

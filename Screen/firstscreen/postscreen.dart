@@ -1,13 +1,14 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
 import 'package:mobileapp_project/Screen/firstscreen/datapost.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:mobileapp_project/Screen/map/getlocation.dart';
-import 'package:mobileapp_project/Screen/map/map.dart';
+import 'package:mobileapp_project/color/selectedcolor.dart';
 
 class WritePost extends StatefulWidget {
   const WritePost({Key? key});
@@ -15,6 +16,10 @@ class WritePost extends StatefulWidget {
   @override
   State<WritePost> createState() => _WritePostState();
 }
+
+final user = FirebaseAuth.instance.currentUser;
+String email = user!.email!;
+final name = email.split('@');
 
 class _WritePostState extends State<WritePost> {
   GetLocation getLocation = GetLocation();
@@ -35,6 +40,7 @@ class _WritePostState extends State<WritePost> {
 
   @override
   Widget build(BuildContext context) {
+    MyPalettesColor myPalettesColor = MyPalettesColor();
     GetLocation getLocation = GetLocation();
     final _formkey = GlobalKey<FormState>();
     CollectionReference _datapost =
@@ -42,6 +48,9 @@ class _WritePostState extends State<WritePost> {
     DataPost post = DataPost(
         "Header", "essay", DateTime.now(), 1, getLocation.getLocationData(), 0);
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: myPalettesColor.purple,
+      ),
       body: FutureBuilder(
         future: Firebase.initializeApp(),
         builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
@@ -60,47 +69,91 @@ class _WritePostState extends State<WritePost> {
             child: Padding(
               padding: const EdgeInsets.fromLTRB(20, 50, 20, 50),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  TextFormField(
-                    autofocus: true,
-                    decoration: InputDecoration(labelText: "Header"),
-                    validator:
-                        RequiredValidator(errorText: "Please enter header"),
-                    onSaved: (newValue) {
-                      post.header = newValue!;
-                    },
-                  ),
-                  TextFormField(
-                    autofocus: true,
-                    decoration: InputDecoration(labelText: "Post?"),
-                    onSaved: (newValue) {
-                      post.essays = newValue!;
-                    },
+                  Container(
+                    decoration: BoxDecoration(color: Colors.transparent),
+                    height: MediaQuery.of(context).size.height * 0.1,
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.7,
+                          child: TextFormField(
+                            decoration: InputDecoration(
+                                labelText: "${name[0]} want to post something?",
+                                suffixIcon: IconButton(
+                                  icon: Icon(Icons.send),
+                                  onPressed: () async {
+                                    await getcurrentLatiLng();
+                                    if (_formkey.currentState!.validate()) {
+                                      post.date = DateTime.now();
+                                      _formkey.currentState!.save();
+                                      _datapost.add({
+                                        "name": name[0],
+                                        "warning": post.essays,
+                                        "date": post.date,
+                                        "icon": post.iconint,
+                                        "like": post.like,
+                                        "lat": currentLati,
+                                        "lng": currentLng
+                                      });
+                                      _formkey.currentState!.reset();
+                                      Navigator.pop(context);
+                                    }
+                                  },
+                                )),
+                            onSaved: (newValue) {
+                              post.essays = newValue!;
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   SizedBox(
                     height: 50,
                   ),
-                  ElevatedButton.icon(
-                      onPressed: () async {
-                        await getcurrentLatiLng();
-                        if (_formkey.currentState!.validate()) {
-                          post.date = DateTime.now();
-                          _formkey.currentState!.save();
-                          _datapost.add({
-                            "header": post.header,
-                            "essays": post.essays,
-                            "date": post.date,
-                            "icon": post.iconint,
-                            "like": post.like,
-                            "lat": currentLati,
-                            "lng": currentLng
-                          });
-                          _formkey.currentState!.reset();
-                          Navigator.pop(context);
-                        }
-                      },
-                      icon: Icon(Icons.post_add),
-                      label: Text("label"))
+                  Container(
+                    color: Colors.transparent,
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    height: MediaQuery.of(context).size.height * 0.2,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Spacer(),
+                        InkWell(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.red,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(20),
+                              ),
+                            ),
+                            width: 50,
+                            height: 50,
+                            child: Icon(Icons.camera),
+                          ),
+                        ),
+                        Spacer(),
+                        InkWell(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.amber,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(20),
+                              ),
+                            ),
+                            width: 50,
+                            height: 50,
+                            child: Icon(Icons.file_download),
+                          ),
+                        ),
+                        Spacer()
+                      ],
+                    ),
+                  )
                 ],
               ),
             ),
