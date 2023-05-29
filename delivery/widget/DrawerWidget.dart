@@ -20,7 +20,7 @@ class DrawerWidget extends StatelessWidget {
             padding: EdgeInsets.zero,
             child: UserAccountsDrawerHeader(
               decoration: BoxDecoration(
-                color: Color.fromARGB(255, 168, 40, 31),
+                color: Color.fromARGB(255, 255, 176, 217),
               ),
               accountName: Text(
                 name[0],

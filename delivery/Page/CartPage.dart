@@ -69,7 +69,7 @@ class _CartPageState extends State<CartPage> {
                       width: 380,
                       height: 100,
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Color.fromRGBO(246, 169, 209, 1),
                         borderRadius: BorderRadius.circular(10),
                         boxShadow: const [
                           BoxShadow(
@@ -173,7 +173,7 @@ class _CartPageState extends State<CartPage> {
                       width: 380,
                       height: 100,
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Color.fromRGBO(247, 185, 217, 1),
                         borderRadius: BorderRadius.circular(10),
                         boxShadow: const [
                           BoxShadow(
@@ -277,7 +277,7 @@ class _CartPageState extends State<CartPage> {
                       width: 380,
                       height: 100,
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Color.fromRGBO(247, 185, 217, 1),
                         borderRadius: BorderRadius.circular(10),
                         boxShadow: const [
                           BoxShadow(
@@ -383,7 +383,7 @@ class _CartPageState extends State<CartPage> {
                     child: Container(
                       padding: const EdgeInsets.all(20),
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Color.fromRGBO(187, 176, 246, 1),
                         borderRadius: BorderRadius.circular(10),
                         boxShadow: const [
                           BoxShadow(

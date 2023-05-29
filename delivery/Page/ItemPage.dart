@@ -74,7 +74,7 @@ class _ItemPageState extends State<ItemPage> {
                                   const EdgeInsets.symmetric(horizontal: 4),
                               itemBuilder: (context, _) => const Icon(
                                 Icons.star,
-                                color: Color.fromARGB(255, 255, 24, 24),
+                                color: Color.fromARGB(255, 80, 117, 0),
                               ),
                               onRatingUpdate: (index) {},
                             ),
@@ -83,7 +83,7 @@ class _ItemPageState extends State<ItemPage> {
                               style: TextStyle(
                                 fontSize: 22,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.red,
+                                color: Color.fromARGB(255, 80, 117, 0),
                               ),
                             ),
                           ],
@@ -105,7 +105,7 @@ class _ItemPageState extends State<ItemPage> {
                               width: 90,
                               padding: const EdgeInsets.all(5),
                               decoration: BoxDecoration(
-                                color: Colors.red,
+                                color: Color.fromARGB(255, 200, 238, 119),
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: Row(
@@ -116,14 +116,14 @@ class _ItemPageState extends State<ItemPage> {
                                     onTap: decrementQuantity,
                                     child: const Icon(
                                       CupertinoIcons.minus,
-                                      color: Colors.white,
+                                      color: Colors.black,
                                       size: 20,
                                     ),
                                   ),
                                   Text(
                                     quantity.toString(),
                                     style: const TextStyle(
-                                      color: Colors.white,
+                                      color: Colors.black,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -131,7 +131,7 @@ class _ItemPageState extends State<ItemPage> {
                                     onTap: incrementQuantity,
                                     child: const Icon(
                                       CupertinoIcons.plus,
-                                      color: Colors.white,
+                                      color: Colors.black,
                                       size: 20,
                                     ),
                                   ),
@@ -173,7 +173,7 @@ class _ItemPageState extends State<ItemPage> {
                                   padding: EdgeInsets.symmetric(horizontal: 5),
                                   child: Icon(
                                     CupertinoIcons.clock,
-                                    color: Colors.red,
+                                    color: Colors.green,
                                   ),
                                 ),
                                 Text(

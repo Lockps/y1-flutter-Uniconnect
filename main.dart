@@ -83,19 +83,19 @@ class _FirstPageState extends State<FirstPage> {
               tabs: const [
                 GButton(
                   icon: LineIcons.home,
-                  text: ' home',
+                  text: ' Home',
                 ),
                 GButton(
                   icon: Icons.map,
-                  text: ' map',
+                  text: ' Map',
                 ),
                 GButton(
                   icon: Icons.delivery_dining_rounded,
-                  text: ' Delivery',
+                  text: ' Food',
                 ),
                 GButton(
                   icon: Icons.developer_board_outlined,
-                  text: ' classroom',
+                  text: 'File',
                 ),
                 GButton(
                   icon: Icons.person,

@@ -14,7 +14,7 @@ class ItemBottomNavBar extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
+            const Row(
               children: [
                 Text(
                   "Total",
@@ -28,7 +28,7 @@ class ItemBottomNavBar extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 19,
                       fontWeight: FontWeight.bold,
-                      color: Colors.red),
+                      color: Color.fromARGB(255, 20, 104, 23)),
                 )
               ],
             ),
@@ -40,16 +40,20 @@ class ItemBottomNavBar extends StatelessWidget {
                 );
               },
               style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.red),
+                  backgroundColor: MaterialStateProperty.all(
+                      Color.fromARGB(255, 194, 236, 104)),
                   padding: MaterialStateProperty.all(
                       const EdgeInsets.symmetric(vertical: 15, horizontal: 20)),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)))),
-              icon: const Icon(CupertinoIcons.cart),
+              icon: const Icon(CupertinoIcons.cart, color: Colors.black),
               label: const Text(
                 "Add to cart",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black),
               ),
             )
           ],

@@ -152,7 +152,7 @@ class _FeedState extends State<Feed> {
                                                         .ref();
                                                 Reference referenceDirImages =
                                                     referenceRoot
-                                                        .child('images');
+                                                        .child('picturess');
                                                 Reference
                                                     referenceImageToUpload =
                                                     referenceDirImages
@@ -203,27 +203,21 @@ class _FeedState extends State<Feed> {
                                               "lng": currentLng
                                             });
                                             _formkey.currentState!.reset();
+
+                                            if (imageUrl.isEmpty) {
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(SnackBar(
+                                                      content: Text(
+                                                          'Please upload an image')));
+                                              return;
+                                            }
+                                            if (key.currentState!.validate()) {
+                                              Map<String, String> dataToSend = {
+                                                'image': imageUrl,
+                                              };
+                                              _reference.add(dataToSend);
+                                            }
                                           }
-                                        }
-
-                                        if (imageUrl.isEmpty) {
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(SnackBar(
-                                                  content: Text(
-                                                      'Please upload an image')));
-                                          return;
-                                        }
-                                        if (key.currentState!.validate()) {
-                                          String itemName =
-                                              _controllerName.text;
-                                          String itemQuantity =
-                                              _controllerQuantity.text;
-                                          Map<String, String> dataToSend = {
-                                            'imgname': itemName,
-                                            'imagepost': imageUrl,
-                                          };
-
-                                          _reference.add(dataToSend);
                                         }
                                       },
                                       icon: Icon(Icons.send),
@@ -238,7 +232,7 @@ class _FeedState extends State<Feed> {
               )),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.only(top: 10),
+              padding: const EdgeInsets.only(),
               child: RefreshIndicator(
                 onRefresh: _refreshdata,
                 color: Colors.red,

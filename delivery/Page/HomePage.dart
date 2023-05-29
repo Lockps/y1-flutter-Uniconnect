@@ -27,11 +27,11 @@ class Deli_homepage extends StatelessWidget {
               width: double.infinity,
               height: 50,
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Color.fromARGB(255, 207, 229, 158),
                 borderRadius: BorderRadius.circular(20),
                 boxShadow: const [
                   BoxShadow(
-                    color: Colors.grey,
+                    color: Color.fromARGB(255, 207, 229, 158),
                     spreadRadius: 2,
                     blurRadius: 10,
                     offset: Offset(0, 3),
@@ -46,7 +46,7 @@ class Deli_homepage extends StatelessWidget {
                   children: [
                     const Icon(
                       CupertinoIcons.search,
-                      color: Colors.red,
+                      color: Color.fromARGB(255, 219, 56, 141),
                     ),
                     Container(
                       height: 50,
@@ -124,7 +124,7 @@ class Deli_homepage extends StatelessWidget {
         decoration:
             BoxDecoration(borderRadius: BorderRadius.circular(20), boxShadow: [
           BoxShadow(
-            color: Colors.grey,
+            color: Color.fromARGB(255, 84, 201, 255).withAlpha(80),
             spreadRadius: 2,
             blurRadius: 10,
             offset: Offset(0, 3),
@@ -139,7 +139,7 @@ class Deli_homepage extends StatelessWidget {
           child: Icon(
             CupertinoIcons.cart,
             size: 28,
-            color: Colors.red,
+            color: Color.fromARGB(255, 255, 130, 121),
           ),
         ),
       ),

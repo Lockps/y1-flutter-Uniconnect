@@ -40,11 +40,11 @@ class _NewestItemsWidgetState extends State<NewestItemsWidget> {
                 width: 380,
                 height: 150,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Color.fromARGB(255, 178, 217, 249),
                   borderRadius: BorderRadius.circular(10),
                   boxShadow: const [
                     BoxShadow(
-                      color: Colors.grey,
+                      color: Color.fromARGB(255, 186, 214, 236),
                       spreadRadius: 3,
                       blurRadius: 10,
                       offset: Offset(0, 3),
@@ -149,11 +149,11 @@ class _NewestItemsWidgetState extends State<NewestItemsWidget> {
                 width: 380,
                 height: 150,
                 decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Color.fromARGB(255, 178, 217, 249),
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: const [
                       BoxShadow(
-                        color: Colors.grey,
+                        color: Color.fromARGB(255, 186, 214, 236),
                         spreadRadius: 3,
                         blurRadius: 10,
                         offset: Offset(0, 3),
@@ -255,11 +255,11 @@ class _NewestItemsWidgetState extends State<NewestItemsWidget> {
                 width: 380,
                 height: 150,
                 decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Color.fromARGB(255, 178, 217, 249),
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: const [
                       BoxShadow(
-                        color: Colors.grey,
+                        color: Color.fromARGB(255, 186, 214, 236),
                         spreadRadius: 3,
                         blurRadius: 10,
                         offset: Offset(0, 3),
@@ -361,11 +361,11 @@ class _NewestItemsWidgetState extends State<NewestItemsWidget> {
                 width: 380,
                 height: 150,
                 decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Color.fromARGB(255, 178, 217, 249),
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: const [
                       BoxShadow(
-                        color: Colors.grey,
+                        color: Color.fromARGB(255, 186, 214, 236),
                         spreadRadius: 3,
                         blurRadius: 10,
                         offset: Offset(0, 3),
@@ -467,11 +467,11 @@ class _NewestItemsWidgetState extends State<NewestItemsWidget> {
                 width: 380,
                 height: 150,
                 decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Color.fromARGB(255, 178, 217, 249),
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: const [
                       BoxShadow(
-                        color: Colors.grey,
+                        color: Color.fromARGB(255, 186, 214, 236),
                         spreadRadius: 3,
                         blurRadius: 10,
                         offset: Offset(0, 3),
@@ -573,11 +573,11 @@ class _NewestItemsWidgetState extends State<NewestItemsWidget> {
                 width: 380,
                 height: 150,
                 decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Color.fromARGB(255, 178, 217, 249),
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: const [
                       BoxShadow(
-                        color: Colors.grey,
+                        color: Color.fromARGB(255, 186, 214, 236),
                         spreadRadius: 3,
                         blurRadius: 10,
                         offset: Offset(0, 3),

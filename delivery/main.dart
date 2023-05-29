@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'Food App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        scaffoldBackgroundColor: Color(0xFFF5F5F3),
+        scaffoldBackgroundColor: Color.fromARGB(255, 228, 227, 197),
       ),
       routes: {
         "/": (context) => Deli_homepage(),

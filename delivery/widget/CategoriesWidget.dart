@@ -19,18 +19,20 @@ class CategoriesWidget extends StatelessWidget {
               child: Container(
                 padding: EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Color.fromRGBO(247, 200, 224, 1),
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: const [
                       BoxShadow(
-                          color: Colors.grey,
+                          color: Color.fromRGBO(255, 180, 220, 1),
                           spreadRadius: 2,
                           blurRadius: 10,
                           offset: Offset(0, 3))
                     ]),
-                child: Image.asset("assets/images/tangmo.png",
-                width: 50,
-                height: 50,),
+                child: Image.asset(
+                  "assets/images/tangmo.png",
+                  width: 50,
+                  height: 50,
+                ),
               ),
             ),
 
@@ -38,20 +40,42 @@ class CategoriesWidget extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 10),
               child: Container(
+                  padding: EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                      color: Color.fromRGBO(247, 200, 224, 1),
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: const [
+                        BoxShadow(
+                            color: Color.fromRGBO(255, 180, 220, 1),
+                            spreadRadius: 2,
+                            blurRadius: 10,
+                            offset: Offset(0, 3))
+                      ]),
+                  child: Image.asset(
+                    "assets/images/dessert.png",
+                    width: 50,
+                    height: 50,
+                  )),
+            ), //Single item
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: Container(
                 padding: EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Color.fromRGBO(247, 200, 224, 1),
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: const [
                       BoxShadow(
-                          color: Colors.grey,
+                          color: Color.fromRGBO(255, 180, 220, 1),
                           spreadRadius: 2,
                           blurRadius: 10,
                           offset: Offset(0, 3))
                     ]),
-                child: Image.asset("assets/images/dessert.png",
-                width: 50,
-                height: 50,)
+                child: Image.asset(
+                  "assets/images/hambur.webp",
+                  width: 50,
+                  height: 50,
+                ),
               ),
             ), //Single item
             Padding(
@@ -59,18 +83,20 @@ class CategoriesWidget extends StatelessWidget {
               child: Container(
                 padding: EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Color.fromRGBO(247, 200, 224, 1),
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: const [
                       BoxShadow(
-                          color: Colors.grey,
+                          color: Color.fromRGBO(255, 180, 220, 1),
                           spreadRadius: 2,
                           blurRadius: 10,
                           offset: Offset(0, 3))
                     ]),
-                child: Image.asset("assets/images/hambur.webp",
-                width: 50,
-                height: 50,),
+                child: Image.asset(
+                  "assets/images/kao.webp",
+                  width: 50,
+                  height: 50,
+                ),
               ),
             ), //Single item
             Padding(
@@ -78,41 +104,22 @@ class CategoriesWidget extends StatelessWidget {
               child: Container(
                 padding: EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Color.fromRGBO(247, 200, 224, 1),
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: const [
                       BoxShadow(
-                          color: Colors.grey,
+                          color: Color.fromRGBO(255, 180, 220, 1),
                           spreadRadius: 2,
                           blurRadius: 10,
                           offset: Offset(0, 3))
                     ]),
-                child: Image.asset("assets/images/kao.webp",
-                width: 50,
-                height: 50,),
-              ),
-            ), //Single item
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: Container(
-                padding: EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: const [
-                      BoxShadow(
-                          color: Colors.grey,
-                          spreadRadius: 2,
-                          blurRadius: 10,
-                          offset: Offset(0, 3))
-                    ]),
-                child: Image.asset("assets/images/coke.png",
-                width: 50,
-                height: 50,),
+                child: Image.asset(
+                  "assets/images/coke.png",
+                  width: 50,
+                  height: 50,
+                ),
               ),
             ),
-
-            
           ],
         ),
       ),

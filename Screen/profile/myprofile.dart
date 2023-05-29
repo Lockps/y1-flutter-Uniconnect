@@ -57,7 +57,7 @@ class _ProflieState extends State<Proflie> {
     }
 
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 32, 32, 32),
+      backgroundColor: Color.fromARGB(255, 114, 255, 201),
       body: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -67,7 +67,7 @@ class _ProflieState extends State<Proflie> {
                 height: 50,
               ),
               ProfilePicture(
-                name: 'Aditya Dharmawan Saputra',
+                name: name[0],
                 radius: 50,
                 fontsize: 21,
                 img: imageprofile,
@@ -77,15 +77,12 @@ class _ProflieState extends State<Proflie> {
               ),
               Text(
                 name[0],
-                style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
               SizedBox(
                 height: 14,
               ),
-              Text(email, style: TextStyle(fontSize: 18, color: Colors.white)),
+              Text(email, style: TextStyle(fontSize: 18)),
               SizedBox(
                 height: 14,
               ),
@@ -96,7 +93,7 @@ class _ProflieState extends State<Proflie> {
                   height: 40,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
-                    color: Colors.yellowAccent,
+                    color: darkpink,
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -124,7 +121,7 @@ class _ProflieState extends State<Proflie> {
                   height: 55,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
-                    color: Color.fromARGB(255, 77, 77, 77),
+                    color: yellow,
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -135,13 +132,11 @@ class _ProflieState extends State<Proflie> {
                       ),
                       Icon(
                         Icons.lock_clock,
-                        color: Colors.white,
                       ),
                       SizedBox(
                         width: 15,
                       ),
-                      Text("Booking",
-                          style: TextStyle(fontSize: 22, color: Colors.white))
+                      Text("Booking", style: TextStyle(fontSize: 22))
                     ],
                   ),
                 ),
@@ -153,9 +148,7 @@ class _ProflieState extends State<Proflie> {
                 width: 300,
                 height: 55,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
-                  color: Color.fromARGB(255, 77, 77, 77),
-                ),
+                    borderRadius: BorderRadius.circular(30), color: yellow),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -164,13 +157,11 @@ class _ProflieState extends State<Proflie> {
                     ),
                     Icon(
                       Icons.fastfood,
-                      color: Colors.white,
                     ),
                     SizedBox(
                       width: 15,
                     ),
-                    Text("Order",
-                        style: TextStyle(fontSize: 22, color: Colors.white))
+                    Text("Order", style: TextStyle(fontSize: 22))
                   ],
                 ),
               ),
@@ -185,8 +176,11 @@ class _ProflieState extends State<Proflie> {
                   width: 140,
                   height: 45,
                   decoration: BoxDecoration(
+                    border: Border.all(
+                        width: 1.4,
+                        color: Color.fromARGB(255, 53, 53, 53).withAlpha(80)),
                     borderRadius: BorderRadius.circular(30),
-                    color: Colors.red,
+                    color: Color.fromARGB(255, 141, 223, 255),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -208,3 +202,10 @@ class _ProflieState extends State<Proflie> {
 }
 
 final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
+
+Color purple = const Color.fromRGBO(178, 164, 255, 1);
+Color pink = const Color.fromRGBO(247, 200, 224, 1);
+Color darkpink = const Color.fromARGB(255, 255, 176, 217);
+Color orange = const Color.fromRGBO(255, 222, 180, 1);
+Color yellow = const Color.fromARGB(255, 255, 252, 178);
+Color green = Color.fromARGB(255, 221, 255, 149);

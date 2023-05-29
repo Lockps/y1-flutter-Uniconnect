@@ -1,14 +1,14 @@
 // ignore_for_file: prefer_const_constructors, unused_field, unnecessary_null_comparison
 
+import 'dart:typed_data';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:marker_icon/marker_icon.dart';
 import 'package:mobileapp_project/Screen/map/getlocation.dart';
-import 'package:mobileapp_project/Screen/profile/myprofile.dart';
 import 'package:mobileapp_project/color/selectedcolor.dart';
 
 class MapPost extends StatefulWidget {
@@ -27,6 +27,9 @@ class _MapPostState extends State<MapPost> {
   String? data;
 
   bool isClicked = false;
+
+  String? urlpic;
+  Uint8List? pic;
 
   @override
   void initState() {
@@ -64,7 +67,7 @@ class _MapPostState extends State<MapPost> {
                 getcurrentlocation();
                 LatLng newLocation = currentposition;
                 _googleMapController!
-                    .animateCamera(CameraUpdate.newLatLng(newLocation));
+                    .animateCamera(CameraUpdate.newLatLngZoom(newLocation, 17));
               },
               icon: Icon(Icons.location_on))
         ],
@@ -77,7 +80,7 @@ class _MapPostState extends State<MapPost> {
         children: [
           StreamBuilder(
             stream: FirebaseFirestore.instance.collection("Post").snapshots(),
-            builder: (context, snapshot) {
+            builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
               print(snapshot);
               if (snapshot.hasData) {
                 markers.clear();
@@ -88,16 +91,20 @@ class _MapPostState extends State<MapPost> {
                   double latitude = document.get("lat");
                   double longitude = document.get("lng");
                   String sampdata = document.get('warning');
+                  // String urlimg = document.get('urlprofile');
 
                   if (latitude != null && longitude != null) {
                     final latLng = LatLng(latitude, longitude);
                     markers.add(
                       Marker(
-                        // icon: x ?? BitmapDescriptor.defaultMarker,
+                        // icon: BitmapDescriptor.fromBytes(pic!),
                         markerId: MarkerId(document.id),
                         position: latLng,
                         onTap: () {
+                          _googleMapController!
+                              .animateCamera(CameraUpdate.zoomTo(17));
                           setState(() {
+                            // urlpic = urlimg;
                             isClicked = true;
                             data = sampdata;
                           });
@@ -234,11 +241,3 @@ class _MapPostState extends State<MapPost> {
     );
   }
 }
-
-// Uint8List? markerimagess;
-// Future<Uint8List> getasset(String path,int width) async{
-//   ByteData data = await rootBundle.load(path);
-//   ui.Codec codec =  await ui.instantiateImageCodec(data.buffer.asUint8List(),targetHeight:width);
-//   ui.FrameInfo fi = await codec.getNextFrame();
-//   return (await fi.image.toByteData(format))
-// }

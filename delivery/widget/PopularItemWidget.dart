@@ -26,11 +26,11 @@ class _PopularItemWidgetState extends State<PopularItemWidget> {
                 width: 170,
                 height: 225,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Color.fromRGBO(200, 194, 236, 1),
                   borderRadius: BorderRadius.circular(10),
                   boxShadow: const [
                     BoxShadow(
-                      color: Colors.grey,
+                      color: Color.fromARGB(255, 220, 242, 173),
                       spreadRadius: 3,
                       blurRadius: 10,
                       offset: Offset(0, 3),
@@ -65,7 +65,7 @@ class _PopularItemWidgetState extends State<PopularItemWidget> {
                       ),
                       const SizedBox(height: 4),
                       const Text(
-                        "Taste Our Hot Wrap",
+                        "อร่อยเส้นเหนียวนุ่ม",
                         style: TextStyle(
                           fontSize: 15,
                         ),
@@ -111,7 +111,7 @@ class _PopularItemWidgetState extends State<PopularItemWidget> {
                 width: 170,
                 height: 225,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Color.fromRGBO(200, 194, 236, 1),
                   borderRadius: BorderRadius.circular(10),
                   boxShadow: const [
                     BoxShadow(
@@ -144,7 +144,7 @@ class _PopularItemWidgetState extends State<PopularItemWidget> {
                       ),
                       const SizedBox(height: 4),
                       const Text(
-                        "Taste Our Hot Wrap",
+                        "wrap นุ่มนิ่ม อร่อยยอด",
                         style: TextStyle(
                           fontSize: 15,
                         ),
@@ -190,7 +190,7 @@ class _PopularItemWidgetState extends State<PopularItemWidget> {
                 width: 170,
                 height: 225,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Color.fromRGBO(200, 194, 236, 1),
                   borderRadius: BorderRadius.circular(10),
                   boxShadow: const [
                     BoxShadow(
@@ -225,7 +225,7 @@ class _PopularItemWidgetState extends State<PopularItemWidget> {
                       ),
                       const SizedBox(height: 4),
                       const Text(
-                        "Taste Our Hot Wrap",
+                        "หอมสุด ผัดอร่อย",
                         style: TextStyle(
                           fontSize: 15,
                           // fontWeight: FontWeight.bold,
@@ -273,7 +273,7 @@ class _PopularItemWidgetState extends State<PopularItemWidget> {
                 width: 170,
                 height: 225,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Color.fromRGBO(200, 194, 236, 1),
                   borderRadius: BorderRadius.circular(10),
                   boxShadow: const [
                     BoxShadow(
@@ -308,7 +308,7 @@ class _PopularItemWidgetState extends State<PopularItemWidget> {
                       ),
                       const SizedBox(height: 4),
                       const Text(
-                        "Taste Our Hot Wrap",
+                        "กรอบเสียงดัง ฟังชัด",
                         style: TextStyle(
                           fontSize: 15,
                           // fontWeight: FontWeight.bold,
