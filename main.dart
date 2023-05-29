@@ -7,7 +7,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:mobileapp_project/Screen/firstscreen/feedmain.dart';
-import 'package:mobileapp_project/Screen/firstscreen/postscreen.dart';
 import 'package:mobileapp_project/Screen/map/testmap.dart';
 import 'package:mobileapp_project/Screen/profile/myprofile.dart';
 import 'package:mobileapp_project/color/selectedcolor.dart';
@@ -25,6 +24,7 @@ import 'package:intl/date_symbol_data_local.dart';
 final user = FirebaseAuth.instance.currentUser;
 String email = user!.email!;
 final name = email.split('@');
+
 void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MainPage(),
+      home: Scaffold(),
     );
   }
 }
@@ -55,26 +55,10 @@ class _FirstPageState extends State<FirstPage> {
   int indexWidget = 0;
   final List<Widget> _selectedWidget = <Widget>[
     Feed(),
-    MapPost(),
+    // MapPost(),
     Deli_homepage(),
     CLASSPAGE(),
-    Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        Text(
-          name[0],
-        ),
-        MaterialButton(
-          onPressed: () {
-            FirebaseAuth.instance.signOut();
-          },
-          color: Colors.blue,
-          child: const Text("Logout"),
-        ),
-        UPLOAD(),
-        book()
-      ],
-    ),
+    Proflie()
   ];
   @override
   Widget build(BuildContext context) {
@@ -131,23 +115,23 @@ class _FirstPageState extends State<FirstPage> {
   }
 }
 
-class book extends StatelessWidget {
-  const book({super.key});
+// class book extends StatelessWidget {
+//   const book({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 50,
-      width: 100,
-      child: ElevatedButton(
-          style: ElevatedButton.styleFrom(shape: const StadiumBorder()),
-          onPressed: () {
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (BuildContext context) {
-              return const main_book();
-            }));
-          },
-          child: const Text("book")),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return SizedBox(
+//       height: 50,
+//       width: 100,
+//       child: ElevatedButton(
+//           style: ElevatedButton.styleFrom(shape: const StadiumBorder()),
+//           onPressed: () {
+//             Navigator.of(context)
+//                 .push(MaterialPageRoute(builder: (BuildContext context) {
+//               return const main_book();
+//             }));
+//           },
+//           child: const Text("book")),
+//     );
+//   }
+// }

@@ -5,6 +5,10 @@ import 'package:location/location.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:mobileapp_project/Screen/map/getlocation.dart';
 
+void main(List<String> args) {
+  runApp(QrGen());
+}
+
 class QrGen extends StatefulWidget {
   const QrGen({Key? key}) : super(key: key);
 

@@ -15,7 +15,7 @@ import '../../main.dart';
 final user = FirebaseAuth.instance.currentUser;
 String email = user!.email!;
 final name = email.split('@');
-String imageurl =
+String imageprofile =
     'https://static.independent.co.uk/s3fs-public/thumbnails/image/2015/06/06/15/Chris-Pratt.jpg?quality=75&width=990&crop=2048%3A1536%2Csmart&auto=webp';
 
 class Proflie extends StatefulWidget {
@@ -46,12 +46,12 @@ class _ProflieState extends State<Proflie> {
         String filename = pickedFile.files[0].name;
         File file = File(pickedFile.files[0].path!);
         final downloadLink = await uploadPdf(filename, file);
-        await firebaseFirestore.collection("imageUpload").add({
+        await firebaseFirestore.collection("Post").add({
           "name": filename,
           "url": downloadLink,
         });
         setState(() {
-          imageurl = downloadLink;
+          imageprofile = downloadLink;
         });
       }
     }
@@ -70,7 +70,7 @@ class _ProflieState extends State<Proflie> {
                 name: 'Aditya Dharmawan Saputra',
                 radius: 50,
                 fontsize: 21,
-                img: imageurl,
+                img: imageprofile,
               ),
               SizedBox(
                 height: 14,
