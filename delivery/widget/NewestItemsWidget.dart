@@ -61,8 +61,8 @@ class _NewestItemsWidgetState extends State<NewestItemsWidget> {
                         child: Container(
                           alignment: Alignment.center,
                           child: Image.asset("assets/images/burger.png"),
-                          width: 160,
-                          height: 200,
+                          width: 130,
+                          height: 150,
                         ),
                       ),
                       Container(
@@ -122,11 +122,11 @@ class _NewestItemsWidgetState extends State<NewestItemsWidget> {
                                 toggleLike(0);
                               },
                               child: Icon(
-                                isLikedList[0]
-                                    ? Icons.favorite
-                                    : Icons.favorite_border,
-                                color: Colors.red,
-                              ),
+                                  isLikedList[0]
+                                      ? Icons.favorite
+                                      : Icons.favorite_border,
+                                  color: Colors.red,
+                                  size: 26),
                             ),
                             const SizedBox(height: 20),
                             const Icon(
@@ -167,8 +167,8 @@ class _NewestItemsWidgetState extends State<NewestItemsWidget> {
                         child: Container(
                           alignment: Alignment.center,
                           child: Image.asset("assets/images/salad.png"),
-                          width: 160,
-                          height: 200,
+                          width: 130,
+                          height: 150,
                         ),
                       ),
                       Container(
@@ -273,8 +273,8 @@ class _NewestItemsWidgetState extends State<NewestItemsWidget> {
                         child: Container(
                           alignment: Alignment.center,
                           child: Image.asset("assets/images/set.png"),
-                          width: 160,
-                          height: 200,
+                          width: 130,
+                          height: 150,
                         ),
                       ),
                       Container(
@@ -379,8 +379,8 @@ class _NewestItemsWidgetState extends State<NewestItemsWidget> {
                         child: Container(
                           alignment: Alignment.center,
                           child: Image.asset("assets/images/pizza.png"),
-                          width: 160,
-                          height: 200,
+                          width: 130,
+                          height: 150,
                         ),
                       ),
                       Container(
@@ -485,8 +485,8 @@ class _NewestItemsWidgetState extends State<NewestItemsWidget> {
                         child: Container(
                           alignment: Alignment.center,
                           child: Image.asset("assets/images/barbeque.png"),
-                          width: 160,
-                          height: 200,
+                          width: 130,
+                          height: 150,
                         ),
                       ),
                       Container(
@@ -591,8 +591,8 @@ class _NewestItemsWidgetState extends State<NewestItemsWidget> {
                         child: Container(
                           alignment: Alignment.center,
                           child: Image.asset("assets/images/taco.png"),
-                          width: 160,
-                          height: 200,
+                          width: 130,
+                          height: 150,
                         ),
                       ),
                       Container(

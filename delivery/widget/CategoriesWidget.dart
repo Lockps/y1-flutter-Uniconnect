@@ -29,7 +29,7 @@ class CategoriesWidget extends StatelessWidget {
                           offset: Offset(0, 3))
                     ]),
                 child: Image.asset(
-                  "assets/images/tangmo.png",
+                  "assets/images/fruit.png",
                   width: 50,
                   height: 50,
                 ),
@@ -72,7 +72,7 @@ class CategoriesWidget extends StatelessWidget {
                           offset: Offset(0, 3))
                     ]),
                 child: Image.asset(
-                  "assets/images/hambur.webp",
+                  "assets/images/ham.png",
                   width: 50,
                   height: 50,
                 ),
@@ -93,7 +93,7 @@ class CategoriesWidget extends StatelessWidget {
                           offset: Offset(0, 3))
                     ]),
                 child: Image.asset(
-                  "assets/images/kao.webp",
+                  "assets/images/tek.png",
                   width: 50,
                   height: 50,
                 ),

@@ -43,6 +43,7 @@ class Deli_homepage extends StatelessWidget {
                   horizontal: 10,
                 ),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const Icon(
                       CupertinoIcons.search,
@@ -50,7 +51,7 @@ class Deli_homepage extends StatelessWidget {
                     ),
                     Container(
                       height: 50,
-                      width: 300,
+                      width: 250,
                       child: const Padding(
                         padding: EdgeInsets.symmetric(
                           horizontal: 15,

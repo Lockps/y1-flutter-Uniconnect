@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'const.dart';
 
-
 class SearchBar extends StatelessWidget {
   final String title;
   SearchBar({required this.title});
@@ -10,8 +9,8 @@ class SearchBar extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Container(
-        height: 50,
-        width: double.infinity,
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
         decoration: ShapeDecoration(
           shape: StadiumBorder(),
           color: AppColor.placeholderBg,
@@ -19,7 +18,6 @@ class SearchBar extends StatelessWidget {
         child: TextField(
           decoration: InputDecoration(
             border: InputBorder.none,
-            
             hintText: title,
             hintStyle: TextStyle(
               color: AppColor.placeholder,

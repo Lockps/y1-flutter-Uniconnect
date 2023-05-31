@@ -10,13 +10,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_profile_picture/flutter_profile_picture.dart';
 
 import '../../book/main_book.dart';
-import '../../main.dart';
 
 final user = FirebaseAuth.instance.currentUser;
 String email = user!.email!;
 final name = email.split('@');
 String imageprofile =
-    'https://static.independent.co.uk/s3fs-public/thumbnails/image/2015/06/06/15/Chris-Pratt.jpg?quality=75&width=990&crop=2048%3A1536%2Csmart&auto=webp';
+    'https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg';
 
 class Proflie extends StatefulWidget {
   const Proflie({super.key});
@@ -46,7 +45,7 @@ class _ProflieState extends State<Proflie> {
         String filename = pickedFile.files[0].name;
         File file = File(pickedFile.files[0].path!);
         final downloadLink = await uploadPdf(filename, file);
-        await firebaseFirestore.collection("Post").add({
+        await firebaseFirestore.collection("asdasd").add({
           "name": filename,
           "url": downloadLink,
         });

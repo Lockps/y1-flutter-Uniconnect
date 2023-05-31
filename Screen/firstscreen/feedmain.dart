@@ -1,7 +1,8 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_local_variable, use_build_context_synchronously
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_local_variable, use_build_context_synchronously, prefer_interpolation_to_compose_strings, empty_catches, avoid_print, unnecessary_null_comparison
 
 import 'dart:io';
 
+import 'dart:core';
 import 'package:camera/camera.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -10,9 +11,6 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_profile_picture/flutter_profile_picture.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:like_button/like_button.dart';
-import 'package:line_icons/line_icon.dart';
-import 'package:line_icons/line_icons.dart';
 import 'package:location/location.dart';
 import 'package:mobileapp_project/Screen/firstscreen/datapost.dart';
 
@@ -21,18 +19,10 @@ import 'package:mobileapp_project/Screen/firstscreen/datapost.dart';
 import 'package:mobileapp_project/Screen/map/getlocation.dart';
 import 'package:mobileapp_project/Screen/profile/myprofile.dart';
 import 'package:mobileapp_project/color/selectedcolor.dart';
-import 'package:mobileapp_project/test.dart';
 
 final user = FirebaseAuth.instance.currentUser;
 String email = user!.email!;
 final name = email.split('@');
-String imageUrl = '';
-final CollectionReference _reference =
-    FirebaseFirestore.instance.collection('shopping_list');
-
-final TextEditingController _controllerName = TextEditingController();
-final TextEditingController _controllerQuantity = TextEditingController();
-GlobalKey<FormState> key = GlobalKey();
 
 class Feed extends StatefulWidget {
   const Feed({Key? key});
@@ -45,11 +35,13 @@ class _FeedState extends State<Feed> {
   MyPalettesColor myPalettesColor = MyPalettesColor();
   CollectionReference _datapost = FirebaseFirestore.instance.collection("Post");
   GetLocation getLocation = GetLocation();
-
   bool isPost = false;
-
   double? currentLati;
   double? currentLng;
+  String? addimage;
+  Map<String, String> dataToSend = {};
+
+  bool isOnCam = false;
 
   Future<void> _refreshdata() async {
     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
@@ -70,6 +62,8 @@ class _FeedState extends State<Feed> {
     });
   }
 
+  GlobalKey<FormState> key = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     final _formkey = GlobalKey<FormState>();
@@ -77,6 +71,10 @@ class _FeedState extends State<Feed> {
         FirebaseFirestore.instance.collection("Post");
     DataPost post = DataPost(
         "Header", "essay", DateTime.now(), 1, getLocation.getLocationData(), 0);
+    String imageUrl;
+    DateTime now = new DateTime.now();
+    DateTime date = new DateTime(now.year, now.month, now.day);
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -146,31 +144,38 @@ class _FeedState extends State<Feed> {
                                                         source:
                                                             ImageSource.camera);
 
-                                                if (file == null) return;
+                                                String uniqueFileName =
+                                                    DateTime.now()
+                                                        .millisecondsSinceEpoch
+                                                        .toString();
                                                 Reference referenceRoot =
                                                     FirebaseStorage.instance
                                                         .ref();
                                                 Reference referenceDirImages =
                                                     referenceRoot
-                                                        .child('picturess');
+                                                        .child('imgposturl');
                                                 Reference
                                                     referenceImageToUpload =
-                                                    referenceDirImages
-                                                        .child('name');
+                                                    referenceDirImages.child(
+                                                        'name$uniqueFileName');
+                                                await referenceImageToUpload
+                                                    .putFile(File(file!.path));
+                                                imageUrl =
+                                                    await referenceImageToUpload
+                                                        .getDownloadURL();
+                                                setState(() {
+                                                  addimage = imageUrl;
+                                                  isOnCam = true;
+                                                });
 
-                                                try {
-                                                  await referenceImageToUpload
-                                                      .putFile(File(file.path));
-                                                  imageUrl =
-                                                      await referenceImageToUpload
-                                                          .getDownloadURL();
-                                                } catch (error) {}
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(SnackBar(
+                                                        content: Text(
+                                                            'Upload Successful')));
                                               },
-                                              icon: Icon(
-                                                Icons.camera_alt,
-                                                color:
-                                                    Colors.white.withAlpha(200),
-                                              ))),
+                                              icon: Icon(isOnCam
+                                                  ? Icons.check
+                                                  : Icons.camera_alt_rounded))),
                                       onSaved: (newValue) {
                                         post.essays = newValue!;
                                       },
@@ -182,41 +187,35 @@ class _FeedState extends State<Feed> {
                                       style: ElevatedButton.styleFrom(
                                           backgroundColor:
                                               myPalettesColor.darkpink),
-                                      label: Text("Post"),
+                                      label: Text(
+                                          isOnCam ? "Post With photo" : "Post"),
                                       onPressed: () async {
                                         if (_formkey.currentState!.validate()) {
                                           await getcurrentLatiLng();
-                                          setState(() {
-                                            isPost = false;
-                                          });
+
                                           if (_formkey.currentState!
                                               .validate()) {
                                             post.date = DateTime.now();
                                             _formkey.currentState!.save();
-                                            _datapost.add({
-                                              "name": name[0],
-                                              "warning": post.essays,
-                                              "date": post.date,
-                                              "icon": post.iconint,
-                                              "like": post.like,
-                                              "lat": currentLati,
-                                              "lng": currentLng
-                                            });
+                                            dataToSend["name"] = name[0];
+                                            dataToSend["warning"] = post.essays;
+                                            dataToSend["date"] =
+                                                post.date.toString();
+                                            dataToSend["icon"] =
+                                                post.iconint.toString();
+                                            dataToSend["like"] =
+                                                post.like.toString();
+                                            dataToSend["lat"] =
+                                                currentLati.toString();
+                                            dataToSend["lng"] =
+                                                currentLng.toString();
+                                            dataToSend["imgurl"] =
+                                                addimage ?? "";
+                                            _datapost.add(dataToSend);
                                             _formkey.currentState!.reset();
-
-                                            if (imageUrl.isEmpty) {
-                                              ScaffoldMessenger.of(context)
-                                                  .showSnackBar(SnackBar(
-                                                      content: Text(
-                                                          'Please upload an image')));
-                                              return;
-                                            }
-                                            if (key.currentState!.validate()) {
-                                              Map<String, String> dataToSend = {
-                                                'image': imageUrl,
-                                              };
-                                              _reference.add(dataToSend);
-                                            }
+                                            setState(() {
+                                              isPost = false;
+                                            });
                                           }
                                         }
                                       },
@@ -289,9 +288,19 @@ class _FeedState extends State<Feed> {
                                     //*DATA
                                     child: Expanded(
                                       child: ListTile(
-                                        title: Text(
-                                          essays ?? "Doesn't found header",
-                                          style: TextStyle(fontSize: 20),
+                                        title: Row(
+                                          children: [
+                                            SizedBox(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.01,
+                                            ),
+                                            Text(
+                                              essays ?? "Doesn't found header",
+                                              style: TextStyle(fontSize: 20),
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     ),
@@ -337,6 +346,7 @@ class _FeedState extends State<Feed> {
           onPressed: () {
             setState(() {
               isPost = !isPost;
+              isOnCam = false;
             });
           },
           backgroundColor: myPalettesColor.pink,

@@ -12,14 +12,10 @@ import 'package:mobileapp_project/Screen/map/testmap.dart';
 import 'package:mobileapp_project/Screen/profile/myprofile.dart';
 import 'package:mobileapp_project/color/selectedcolor.dart';
 import 'package:mobileapp_project/delivery/Page/HomePage.dart';
-import 'package:mobileapp_project/delivery/Page/ItemPage.dart';
 import 'package:mobileapp_project/login/main_page.dart';
-import 'package:mobileapp_project/uploadimage/upimage.dart';
 import 'book/main_book.dart';
 import 'class/class.dart';
-import 'delivery/Page/CartPage.dart';
 import 'firebase_options.dart';
-import 'login/login_page.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 final user = FirebaseAuth.instance.currentUser;
